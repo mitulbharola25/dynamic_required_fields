@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_access_required_fields_tree" model="ir.ui.view">
+        <field name="name">access.required.fields.tree</field>
+        <field name="model">access.required.fields</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="model_id"/>
+                <field name="is_required"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_access_required_fields_form" model="ir.ui.view">
+        <field name="name">access.required.fields.form</field>
+        <field name="model">access.required.fields</field>
+        <field name="arch" type="xml">
+            <form string="Required Fields">
+                <sheet>
+                    <group>
+                        <field name="model_id" options='{"no_open": True, "no_create": True}' required="1"/>
+                        <field name="field_id" widget="many2many_tags" options='{"no_open": True, "no_create": True}' required="1" domain="[('model_id', '=', model_id)]"/>
+                        <field name="is_required"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_access_required_fields" model="ir.actions.act_window">
+        <field name="name">Access Required Fields</field>
+        <field name="res_model">access.required.fields</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage required fields for models.
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Menu Item -->
+  <menuitem id="dynamic_field_required" name="Dynamic Field Required" parent="base.menu_custom" sequence="2">
+      <menuitem id="menu_dynamic_field_required" name="Dynamic Field Required" action="action_access_required_fields"/>
+  </menuitem>
+
+
+</odoo>
