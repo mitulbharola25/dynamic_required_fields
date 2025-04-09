@@ -14,6 +14,9 @@
         "security/ir.model.access.csv",
         "views/access_required_fields.xml",
     ],
+    'images': [
+        'static/description/banner.png',
+    ],
     "installable": True,
     "auto_install": False,
     "application": False,
